@@ -41,6 +41,15 @@ section{padding:48px 0}.section-head{text-align:center;margin-bottom:28px}.secti
 .note{margin-top:20px;padding:15px 18px;border-left:3px solid var(--cyan);background:#55e4dc0c;border-radius:0 12px 12px 0;color:var(--muted);font-size:13px}
 footer{border-top:1px solid #ffffff16;padding:28px 0;color:var(--muted);font-size:12px}.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
 @media(max-width:760px){nav{display:none}.hero{grid-template-columns:1fr;padding:58px 0 28px;gap:20px}.preview{min-height:300px}.cards,.steps{grid-template-columns:1fr}.section-head h2{font-size:27px}h1{letter-spacing:-2px}.card p{min-height:0}}
+
+.product-shot{margin:20px 0 18px;min-height:320px;display:flex;align-items:center;justify-content:center;border-radius:18px;background:radial-gradient(circle at 50% 45%,#638bff25,transparent 65%),#080e1d;border:1px solid #ffffff14;overflow:hidden;padding:18px}
+.phone-frame{width:190px;padding:8px;border-radius:30px;background:linear-gradient(145deg,#64748b,#101827 35%,#020617);border:2px solid #8292aa;box-shadow:0 18px 38px #0009;position:relative}
+.phone-frame:before{content:"";position:absolute;z-index:2;top:10px;left:50%;transform:translateX(-50%);width:54px;height:13px;border-radius:0 0 10px 10px;background:#020617}
+.phone-frame img{display:block;width:100%;height:330px;object-fit:cover;object-position:top;border-radius:22px;background:#101827}
+.extension-shot{margin:20px 0 18px;min-height:320px;display:flex;align-items:center;justify-content:center;padding:16px;border-radius:18px;background:radial-gradient(circle at 50% 45%,#a879ff25,transparent 65%),#080e1d;border:1px solid #ffffff14;overflow:hidden}
+.extension-shot img{display:block;width:100%;max-height:350px;object-fit:contain;border-radius:10px;filter:drop-shadow(0 15px 25px #0008)}
+@media(max-width:760px){.product-shot,.extension-shot{min-height:260px}.phone-frame{width:165px}.phone-frame img{height:290px}}
+
 </style>
 </head>
 <body>
@@ -67,8 +76,8 @@ footer{border-top:1px solid #ffffff16;padding:28px 0;color:var(--muted);font-siz
  <section id="downloads"><div class="wrap">
   <div class="section-head"><h2>Escolha sua versão</h2><p>Os arquivos estão disponíveis para download gratuito.</p></div>
   <div class="cards">
-   <article class="card"><div class="card-icon">▣</div><h3>DisparaWhats Android</h3><p>Instale no seu celular Android e acesse sua conta diretamente pelo aplicativo.</p><div class="meta"><span class="tag">APK</span><span class="tag">Android</span><span class="tag">Download grátis</span></div><a class="btn primary" href="https://github.com/adoniasnascimento93-blip/sublimart-catalogo/releases/download/DisparaWhatsAPK/DisparaWhatsAPK.apk" target="_blank" rel="noopener">↓ Baixar APK</a></article>
-   <article class="card"><div class="card-icon">⌘</div><h3>DisparaWhats Extensão</h3><p>Adicione ao navegador compatível com extensões do Chrome, como Chrome, Opera e Brave.</p><div class="meta"><span class="tag">ZIP</span><span class="tag">Chrome / Opera / Brave</span><span class="tag">Download grátis</span></div><a class="btn primary" href="https://github.com/adoniasnascimento93-blip/sublimart-catalogo/releases/download/DisparaWhats/DisparaWhats_extensao_v1.zip" target="_blank" rel="noopener">↓ Baixar extensão</a></article>
+   <article class="card"><div class="card-icon">▣</div><h3>DisparaWhats Android</h3><div class="product-shot"><div class="phone-frame"><img src="https://raw.githubusercontent.com/adoniasnascimento93-blip/disparawhats-store/main/Captura%20de%20tela%202026-11-16%20005542.jpg" alt="Tela do aplicativo DisparaWhats em um smartphone"></div></div><p>Instale no seu celular Android e acesse sua conta diretamente pelo aplicativo.</p><div class="meta"><span class="tag">APK</span><span class="tag">Android</span><span class="tag">Download grátis</span></div><a class="btn primary" href="https://github.com/adoniasnascimento93-blip/sublimart-catalogo/releases/download/DisparaWhatsAPK/DisparaWhatsAPK.apk" target="_blank" rel="noopener">↓ Baixar APK</a></article>
+   <article class="card"><div class="card-icon">⌘</div><h3>DisparaWhats Extensão</h3><div class="extension-shot"><img src="https://raw.githubusercontent.com/adoniasnascimento93-blip/disparawhats-store/main/Screenshot_20261116-005415_DisparaWhats.png" alt="Captura da extensão DisparaWhats"></div><p>Adicione ao navegador compatível com extensões do Chrome, como Chrome, Opera e Brave.</p><div class="meta"><span class="tag">ZIP</span><span class="tag">Chrome / Opera / Brave</span><span class="tag">Download grátis</span></div><a class="btn primary" href="https://github.com/adoniasnascimento93-blip/sublimart-catalogo/releases/download/DisparaWhats/DisparaWhats_extensao_v1.zip" target="_blank" rel="noopener">↓ Baixar extensão</a></article>
   </div>
   <div class="note">O download dos arquivos é livre. Para utilizar os recursos do DisparaWhats, é necessário ter uma conta ativa e entrar no aplicativo com seu e-mail e senha.</div>
  </div></section>
