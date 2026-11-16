@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090d1b">
+<meta name="description" content="DisparaWhats: aplicativo Android e extensão para navegadores. Baixe gratuitamente e assine por R$ 9,90 por mês.">
+<title>DisparaWhats — Central de downloads</title>
+<style>
+:root{color-scheme:dark;--bg:#090d1b;--panel:#11182b;--panel2:#151f36;--line:#26324d;--muted:#aab6cf;--white:#f7f9ff;--cyan:#55e4dc;--blue:#638bff;--purple:#a879ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#1b2850 0,transparent 38%),radial-gradient(ellipse at 0% 35%,#132b3d 0,transparent 32%),var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--white);line-height:1.55}
+a{color:inherit;text-decoration:none}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}
+header{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff12}
+.brand{display:flex;gap:12px;align-items:center;font-weight:850;letter-spacing:-.5px;font-size:20px}.logo{width:40px;height:40px;border-radius:13px;background:linear-gradient(135deg,var(--cyan),var(--blue) 55%,var(--purple));display:grid;place-items:center;color:#081020;font-weight:1000;font-size:22px;box-shadow:0 8px 28px #638bff40}
+nav{display:flex;gap:26px;color:var(--muted);font-size:14px}nav a:hover{color:var(--cyan)}
+.hero{padding:82px 0 62px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:48px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid #55e4dc55;background:#55e4dc12;color:var(--cyan);padding:7px 12px;border-radius:30px;font-size:12px;font-weight:750;letter-spacing:.6px;text-transform:uppercase}
+h1{font-size:clamp(42px,6vw,70px);line-height:1.02;letter-spacing:-3px;margin:22px 0 18px}h1 span{background:linear-gradient(90deg,var(--cyan),#8aa5ff 65%,#c29bff);background-clip:text;color:transparent}
+.lead{font-size:18px;color:var(--muted);max-width:590px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 19px;border-radius:13px;font-weight:800;font-size:14px;transition:.2s;border:1px solid transparent}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}.primary{background:linear-gradient(100deg,var(--cyan),#79baff);color:#071321;box-shadow:0 10px 30px #55e4dc25}.secondary{border-color:#ffffff30;background:#ffffff09}
+.preview{min-height:350px;position:relative;display:grid;place-items:center}.orb{position:absolute;width:290px;height:290px;border-radius:50%;background:linear-gradient(135deg,#55e4dc35,#638bff35,#a879ff35);filter:blur(18px)}
+.device{position:relative;width:min(330px,100%);padding:22px;border:1px solid #ffffff25;border-radius:28px;background:linear-gradient(145deg,#1b2945dd,#0d1428ee);box-shadow:0 28px 80px #0008;transform:rotate(3deg)}
+.device-top{display:flex;justify-content:space-between;color:var(--muted);font-size:11px}.device h3{font-size:25px;margin:22px 0 5px}.device p{font-size:12px;color:var(--muted);margin:0 0 20px}.metric{padding:14px;border-radius:14px;background:#ffffff0b;border:1px solid #ffffff12;margin-top:10px}.metric b{display:block;font-size:17px}.metric small{color:var(--muted)}.bars{display:flex;gap:6px;margin-top:14px}.bars i{height:6px;flex:1;border-radius:9px;background:linear-gradient(90deg,var(--cyan),var(--blue))}
+section{padding:48px 0}.section-head{text-align:center;margin-bottom:28px}.section-head h2{font-size:32px;letter-spacing:-1px;margin:0 0 8px}.section-head p{color:var(--muted);margin:0}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.card{background:linear-gradient(145deg,#151f36,#101729);border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 16px 45px #0002}
+.card-icon{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-size:25px;background:#55e4dc17;border:1px solid #55e4dc35}.card h3{font-size:22px;margin:18px 0 6px}.card p{color:var(--muted);font-size:14px;min-height:44px}.meta{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.tag{font-size:11px;padding:5px 9px;border-radius:30px;background:#ffffff0c;border:1px solid #ffffff18;color:#dce5f7}.card .btn{width:100%;margin-top:5px}
+.price{max-width:720px;margin:auto;text-align:center;padding:34px;background:linear-gradient(135deg,#172b40,#1a2040 65%,#251d42);border:1px solid #6d8fff55;border-radius:24px;box-shadow:0 18px 55px #0003}.price .amount{font-size:54px;font-weight:900;letter-spacing:-2px;margin:8px 0}.price .amount small{font-size:17px;letter-spacing:0;color:var(--muted);font-weight:600}.price p{color:var(--muted);margin:8px auto 20px;max-width:520px}.price .btn{min-width:220px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.step{padding:20px;border-radius:17px;background:#ffffff08;border:1px solid #ffffff16}.num{width:30px;height:30px;border-radius:10px;background:#638bff25;color:#a9bcff;display:grid;place-items:center;font-weight:900}.step h3{font-size:16px;margin:13px 0 5px}.step p{font-size:13px;color:var(--muted);margin:0}
+.note{margin-top:20px;padding:15px 18px;border-left:3px solid var(--cyan);background:#55e4dc0c;border-radius:0 12px 12px 0;color:var(--muted);font-size:13px}
+footer{border-top:1px solid #ffffff16;padding:28px 0;color:var(--muted);font-size:12px}.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+@media(max-width:760px){nav{display:none}.hero{grid-template-columns:1fr;padding:58px 0 28px;gap:20px}.preview{min-height:300px}.cards,.steps{grid-template-columns:1fr}.section-head h2{font-size:27px}h1{letter-spacing:-2px}.card p{min-height:0}}
+</style>
+</head>
+<body>
+<header class="wrap">
+ <a class="brand" href="#"><span class="logo">D</span><span>DisparaWhats</span></a>
+ <nav><a href="#downloads">Downloads</a><a href="#plano">Plano</a><a href="#instalacao">Como instalar</a><a href="#suporte">Suporte</a></nav>
+ <a class="btn secondary" href="https://wa.me/5592992914876?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20o%20DisparaWhats." target="_blank" rel="noopener">Fale conosco ↗</a>
+</header>
+<main>
+ <div class="wrap hero">
+  <div>
+   <span class="eyebrow">✦ Sua central oficial de downloads</span>
+   <h1>Suas mensagens.<br><span>Mais praticidade.</span></h1>
+   <p class="lead">Conheça o DisparaWhats para Android e navegador. Baixe os aplicativos gratuitamente e tenha acesso aos recursos com sua conta ativa.</p>
+   <div class="actions"><a class="btn primary" href="#downloads">↓ Baixar agora</a><a class="btn secondary" href="#plano">Conhecer o plano</a></div>
+  </div>
+  <div class="preview" aria-label="Ilustração da interface DisparaWhats"><div class="orb"></div><div class="device">
+   <div class="device-top"><b>DISPARAWHATS</b><span>● ● ●</span></div>
+   <h3>Olá! 👋</h3><p>Seu painel de comunicação</p>
+   <div class="metric"><small>Campanhas organizadas</small><b>Simples e direto</b><div class="bars"><i></i><i></i><i></i><i></i></div></div>
+   <div class="metric"><small>Disponível em</small><b>Android + Navegador</b></div>
+  </div></div>
+ </div>
+ <section id="downloads"><div class="wrap">
+  <div class="section-head"><h2>Escolha sua versão</h2><p>Os arquivos estão disponíveis para download gratuito.</p></div>
+  <div class="cards">
+   <article class="card"><div class="card-icon">▣</div><h3>DisparaWhats Android</h3><p>Instale no seu celular Android e acesse sua conta diretamente pelo aplicativo.</p><div class="meta"><span class="tag">APK</span><span class="tag">Android</span><span class="tag">Download grátis</span></div><a class="btn primary" href="https://github.com/adoniasnascimento93-blip/sublimart-catalogo/releases/download/DisparaWhatsAPK/DisparaWhatsAPK.apk" target="_blank" rel="noopener">↓ Baixar APK</a></article>
+   <article class="card"><div class="card-icon">⌘</div><h3>DisparaWhats Extensão</h3><p>Adicione ao navegador compatível com extensões do Chrome, como Chrome, Opera e Brave.</p><div class="meta"><span class="tag">ZIP</span><span class="tag">Chrome / Opera / Brave</span><span class="tag">Download grátis</span></div><a class="btn primary" href="https://github.com/adoniasnascimento93-blip/sublimart-catalogo/releases/download/DisparaWhats/DisparaWhats_extensao_v1.zip" target="_blank" rel="noopener">↓ Baixar extensão</a></article>
+  </div>
+  <div class="note">O download dos arquivos é livre. Para utilizar os recursos do DisparaWhats, é necessário ter uma conta ativa e entrar no aplicativo com seu e-mail e senha.</div>
+ </div></section>
+ <section id="plano"><div class="wrap"><div class="section-head"><h2>Um plano. Duas versões.</h2><p>Use o aplicativo Android e a extensão para navegador.</p></div>
+  <div class="price"><span class="eyebrow">Plano completo</span><div class="amount">R$ 9,90 <small>/ mês</small></div><p>Acesso ao DisparaWhats Android + extensão para navegador, mediante conta ativa.</p><a class="btn primary" href="https://wa.me/5592992914876?text=Ol%C3%A1%21%20Quero%20assinar%20o%20DisparaWhats%20por%20R%24%209%2C90%20ao%20m%C3%AAs." target="_blank" rel="noopener">Assinar pelo WhatsApp ↗</a><p style="font-size:12px;margin-top:15px">Compra e renovação realizadas diretamente pelo WhatsApp.</p></div>
+ </div></section>
+ <section id="instalacao"><div class="wrap"><div class="section-head"><h2>Como começar</h2><p>É simples: baixe, solicite seu acesso e entre na sua conta.</p></div>
+  <div class="steps">
+   <div class="step"><span class="num">1</span><h3>Baixe sua versão</h3><p>Escolha o APK para Android ou o ZIP para navegador, gratuitamente.</p></div>
+   <div class="step"><span class="num">2</span><h3>Solicite seu acesso</h3><p>Chame pelo WhatsApp para contratar ou renovar o plano mensal.</p></div>
+   <div class="step"><span class="num">3</span><h3>Ative sua conta</h3><p>Após a confirmação manual do pagamento, você receberá seu e-mail e senha.</p></div>
+  </div>
+  <div class="note"><b>Instalação:</b> No Android, abra o APK e autorize a instalação quando o sistema solicitar. Na extensão, extraia o ZIP, abra a página de extensões do navegador, ative o modo do desenvolvedor e selecione “Carregar sem compactação”, apontando para a pasta extraída.</div>
+ </div></section>
+ <section id="suporte"><div class="wrap"><div class="section-head"><h2>Precisa de ajuda?</h2><p>Fale diretamente com o atendimento DisparaWhats.</p></div><div style="text-align:center"><a class="btn primary" href="https://wa.me/5592992914876?text=Ol%C3%A1%21%20Preciso%20de%20ajuda%20com%20o%20DisparaWhats." target="_blank" rel="noopener">Conversar pelo WhatsApp ↗</a></div></div></section>
+</main>
+<footer><div class="wrap foot"><span>© 2026 DisparaWhats. Todos os direitos reservados.</span><span>Downloads gratuitos · Acesso mediante conta ativa</span></div></footer>
+</body></html>
