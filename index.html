@@ -155,6 +155,9 @@
 </head>
 <body class="bg-dot-matrix antialiased selection:bg-cyan-500 selection:text-slate-950 overflow-x-hidden">
 
+    <!-- CANVAS INTERATIVO DE FUNDO (MOUSE E TOQUE) -->
+    <canvas id="interactive-bg-canvas" aria-hidden="true" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
     <!-- AMBIENT SPOTLIGHTS FIXOS DE FUNDO -->
     <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <div class="absolute -top-40 left-1/4 w-[500px] h-[500px] bg-blue-600/15 rounded-full blur-[140px]"></div>
@@ -945,6 +948,218 @@
 
     <!-- SCRIPTS DE INTERATIVIDADE -->
     <script>
+        // 0. Animação Interativa de Fundo (Rede Neural / Partículas + Aura e Ondas no Mouse/Toque)
+        (function initInteractiveBackground() {
+            const canvas = document.getElementById('interactive-bg-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return;
+
+            const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            let width = 0;
+            let height = 0;
+            let dpr = 1;
+            let particles = [];
+            let ripples = [];
+
+            const pointer = {
+                x: -9999,
+                y: -9999,
+                active: false,
+                radius: 170
+            };
+
+            const palette = ['#06b6d4', '#3b82f6', '#a855f7'];
+
+            function resizeCanvas() {
+                dpr = Math.min(window.devicePixelRatio || 1, 2);
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = Math.floor(width * dpr);
+                canvas.height = Math.floor(height * dpr);
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+                // Quantidade adaptativa de partículas (leve no celular, rica no desktop)
+                const isMobile = width < 768;
+                const targetCount = prefersReducedMotion
+                    ? 24
+                    : Math.min(isMobile ? 42 : 85, Math.max(28, Math.floor((width * height) / (isMobile ? 16000 : 18000))));
+
+                particles = [];
+                for (let i = 0; i < targetCount; i++) {
+                    particles.push({
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        vx: (Math.random() - 0.5) * (prefersReducedMotion ? 0.12 : 0.45),
+                        vy: (Math.random() - 0.5) * (prefersReducedMotion ? 0.12 : 0.45),
+                        size: Math.random() * 1.8 + 1.1,
+                        color: palette[i % palette.length],
+                        alpha: Math.random() * 0.45 + 0.35
+                    });
+                }
+            }
+
+            function spawnRipple(x, y) {
+                if (prefersReducedMotion) return;
+                ripples.push({
+                    x,
+                    y,
+                    radius: 8,
+                    maxRadius: width < 768 ? 130 : 180,
+                    alpha: 0.45
+                });
+                if (ripples.length > 6) ripples.shift();
+            }
+
+            // Eventos de Mouse (Desktop)
+            window.addEventListener('mousemove', (e) => {
+                pointer.x = e.clientX;
+                pointer.y = e.clientY;
+                pointer.active = true;
+            }, { passive: true });
+
+            window.addEventListener('mousedown', (e) => {
+                pointer.x = e.clientX;
+                pointer.y = e.clientY;
+                pointer.active = true;
+                spawnRipple(e.clientX, e.clientY);
+            }, { passive: true });
+
+            window.addEventListener('mouseleave', () => {
+                pointer.active = false;
+            }, { passive: true });
+
+            // Eventos de Toque (Celular e Tablet)
+            window.addEventListener('touchstart', (e) => {
+                if (e.touches && e.touches.length > 0) {
+                    const touch = e.touches[0];
+                    pointer.x = touch.clientX;
+                    pointer.y = touch.clientY;
+                    pointer.active = true;
+                    spawnRipple(touch.clientX, touch.clientY);
+                }
+            }, { passive: true });
+
+            window.addEventListener('touchmove', (e) => {
+                if (e.touches && e.touches.length > 0) {
+                    const touch = e.touches[0];
+                    pointer.x = touch.clientX;
+                    pointer.y = touch.clientY;
+                    pointer.active = true;
+                }
+            }, { passive: true });
+
+            window.addEventListener('touchend', () => {
+                setTimeout(() => {
+                    pointer.active = false;
+                }, 400);
+            }, { passive: true });
+
+            window.addEventListener('resize', resizeCanvas);
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+
+                // Aura suave acompanhando o cursor ou o dedo
+                if (pointer.active && !prefersReducedMotion) {
+                    const grad = ctx.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, pointer.radius * 1.15);
+                    grad.addColorStop(0, 'rgba(6, 182, 212, 0.14)');
+                    grad.addColorStop(0.5, 'rgba(168, 85, 247, 0.06)');
+                    grad.addColorStop(1, 'rgba(3, 7, 18, 0)');
+                    ctx.fillStyle = grad;
+                    ctx.beginPath();
+                    ctx.arc(pointer.x, pointer.y, pointer.radius * 1.15, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                // Ondas expansivas ao clicar ou tocar na tela
+                for (let r = ripples.length - 1; r >= 0; r--) {
+                    const rip = ripples[r];
+                    rip.radius += 3.2;
+                    rip.alpha *= 0.94;
+                    if (rip.radius >= rip.maxRadius || rip.alpha <= 0.01) {
+                        ripples.splice(r, 1);
+                        continue;
+                    }
+                    ctx.strokeStyle = `rgba(6, 182, 212, ${rip.alpha.toFixed(3)})`;
+                    ctx.lineWidth = 1.4;
+                    ctx.beginPath();
+                    ctx.arc(rip.x, rip.y, rip.radius, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+
+                const linkDist = width < 768 ? 105 : 135;
+
+                // Atualiza e desenha partículas + conexões
+                for (let i = 0; i < particles.length; i++) {
+                    const p = particles[i];
+
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    if (p.x < 0 || p.x > width) p.vx *= -1;
+                    if (p.y < 0 || p.y > height) p.vy *= -1;
+
+                    // Interação suave com o mouse/toque
+                    if (pointer.active) {
+                        const dx = pointer.x - p.x;
+                        const dy = pointer.y - p.y;
+                        const dist = Math.hypot(dx, dy);
+
+                        if (dist < pointer.radius && dist > 0.1) {
+                            const force = (pointer.radius - dist) / pointer.radius;
+                            // Leve repulsão no núcleo para não poluir o texto e conexão brilhante ao redor
+                            if (dist < 48) {
+                                p.x -= (dx / dist) * force * 1.4;
+                                p.y -= (dy / dist) * force * 1.4;
+                            } else {
+                                p.x += (dx / dist) * force * 0.35;
+                                p.y += (dy / dist) * force * 0.35;
+                            }
+
+                            ctx.strokeStyle = `rgba(6, 182, 212, ${(force * 0.42).toFixed(3)})`;
+                            ctx.lineWidth = 1;
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(pointer.x, pointer.y);
+                            ctx.stroke();
+                        }
+                    }
+
+                    // Conexões entre partículas próximas
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const p2 = particles[j];
+                        const dx = p.x - p2.x;
+                        const dy = p.y - p2.y;
+                        const dist = Math.hypot(dx, dy);
+
+                        if (dist < linkDist) {
+                            const lineAlpha = (1 - dist / linkDist) * 0.18;
+                            ctx.strokeStyle = `rgba(59, 130, 246, ${lineAlpha.toFixed(3)})`;
+                            ctx.lineWidth = 0.8;
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.stroke();
+                        }
+                    }
+
+                    // Ponto luminoso
+                    ctx.globalAlpha = p.alpha;
+                    ctx.fillStyle = p.color;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.globalAlpha = 1;
+                }
+
+                requestAnimationFrame(animate);
+            }
+
+            resizeCanvas();
+            animate();
+        })();
+
         // 1. Menu Mobile Compacto
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
